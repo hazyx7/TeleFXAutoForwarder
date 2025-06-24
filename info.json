@@ -1,0 +1,19 @@
+{
+  "api_id": PASTE IT HERE,
+  "api_hash": "PASTE IT HERE",
+  "session_name": "forwarder_session",
+  "routing": [
+    {
+      "source_chat_ids": [-1000023456789],
+      "target_chat_ids": [-1000023456789]
+    },
+    {
+      "source_chat_ids": [-1000023456789, -1000023456789],
+      "target_chat_ids": [-1000023456789]
+    },
+    {
+      "source_chat_ids": [-1000023456789], 
+      "target_chat_ids": [-1000023456789] 
+    }
+  ]
+}
