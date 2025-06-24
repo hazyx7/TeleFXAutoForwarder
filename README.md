@@ -1,6 +1,6 @@
 # TeleFXAutoForwarder (Telegram)
 
-This is a Python-based Telegram bot that automatically **detects and forwards trading signals** (such as "XAUUSD Buy/Sell signals") from one group/channel to another.
+This is a Python-based automation that automatically **detects and forwards trading signals** (such as "XAUUSD Buy/Sell signals") from one group/channel to another.
 
 ---
 
@@ -11,14 +11,6 @@ This is a Python-based Telegram bot that automatically **detects and forwards tr
 - ✅ Replaces group/channel IDs with human-readable names in logs
 - ✅ Clean formatting with color logs and error handling
 - ✅ Configurable routing: multiple source → multiple target groups
-
----
-
-## 🧰 Requirements
-
-- Python 3.8 or above
-- A Telegram account
-- A Telegram API ID and API hash (from [my.telegram.org](https://my.telegram.org))
 
 ---
 
@@ -79,13 +71,6 @@ tp 3320
 who buy gold now?
 xauusd current price: 3328
 ```
-
----
-
-## 📝 Logs
-
-- Logs are saved to `bot_log.txt`
-- Skipped messages and all forwardings are timestamped and labeled clearly
 
 ---
 
