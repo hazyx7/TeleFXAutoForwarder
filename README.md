@@ -7,9 +7,7 @@ This is a Python-based automation that automatically **detects and forwards trad
 ## ⚙️ Features
 
 - ✅ Filters and forwards only **valid trading signals**
-- ✅ Skips unrelated messages (e.g. "who buys gold now?")
-- ✅ Replaces group/channel IDs with human-readable names in logs
-- ✅ Clean formatting with color logs and error handling
+- ✅ Skips unrelated messages
 - ✅ Configurable routing: multiple source → multiple target groups
 
 ---
@@ -24,6 +22,7 @@ pip install telethon colorama
 ### -> Configure your credentials
 
 Place/ Put ur informations in the `info.json` in the same directory.
+Use this repo to get chat IDs [TeleChatIDs](https://github.com/hazyx7/TeleChatIDs)
 You can get chat IDs using Telegram bots like [@getidsbot](https://t.me/getidsbot).
 
 ---
