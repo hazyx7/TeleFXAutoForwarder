@@ -15,9 +15,9 @@ pip install telethon colorama
 
 Put ur credentials in the `info.json` in the same directory.
 
-use this repo to get chat IDs [TeleChatIDs](https://github.com/hazyx7/TeleChatIDs)
+you can get chat IDs using Telegram bots like [@getidsbot](https://t.me/getidsbot)
 OR
-you can get chat IDs using Telegram bots like [@getidsbot](https://t.me/getidsbot).
+use this to get chat IDs [TeleChatIDs](https://github.com/hazyx7/TeleChatIDs)
 
 ---
 
