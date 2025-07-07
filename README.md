@@ -4,14 +4,6 @@ This is a Python-based automation that automatically **detects and forwards trad
 
 ---
 
-## ⚙️ Features
-
-- ✅ Filters and forwards only **valid trading signals**
-- ✅ Skips unrelated messages
-- ✅ Configurable routing: multiple source → multiple target groups
-
----
-
 ## 🚀 Setup Instructions
 
 ### -> Install dependencies
