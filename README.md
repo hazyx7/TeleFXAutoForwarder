@@ -7,6 +7,7 @@ This is a Python-based automation that automatically **detects and forwards trad
 ## 🚀 Setup Instructions
 
 ### -> Install dependencies
+make sure you have Python, and then open cmd as admin and run this command to install required package
 ```bash
 pip install telethon colorama
 ```
