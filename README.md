@@ -18,21 +18,9 @@ pip install telethon colorama
 
 ### ✅ 2. Configure Your Credentials
 
-Create a file named `info.json` in the same directory with the following format:
+Input your credentials in the file `info.json` in the same directory
 
-```json
-{
-  "api_id": YOUR_API_ID,
-  "api_hash": "YOUR_API_HASH",
-  "session_name": "forwarder_session",
-  "routing": [
-    {
-      "source_chat_ids": [-1001234567890],
-      "target_chat_ids": [-1009876543210]
-    }
-  ]
-}
-```
+
 
 - Get your API ID and hash here: [Telegram API](https://my.telegram.org/auth?to=apps)
 - Get group or channel chat IDs using:
@@ -43,11 +31,7 @@ Create a file named `info.json` in the same directory with the following format:
 
 ## ▶️ How to Run
 
-Run the script from your terminal:
-
-```bash
-python run.py
-```
+Run the script.
 
 - On first run, enter your **phone number** to log in (or **bot token** if using a bot).
 - Once logged in, the script will monitor and auto-forward matching signals.
