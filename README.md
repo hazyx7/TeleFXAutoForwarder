@@ -1,75 +1,118 @@
 # TeleFXAutoForwarder (Telegram)
 
-This is a Python-based automation that automatically **detects and forwards trading signals** (such as "XAUUSD Buy/Sell signals") from one group/channel to another.
+A Python-based automation script that **detects and forwards trading signals** (e.g. XAUUSD, GBPJPY, BTCUSD Buy/Sell signals) from one Telegram group/channel to another, with support for multiple trading instruments.
 
 ---
 
 ## 🚀 Setup Instructions
 
-### -> Install dependencies
-make sure you have Python, and then open cmd as admin and run this command to install required package
+### ✅ 1. Install Dependencies
+
+Make sure you have Python installed. Then open a terminal (CMD) and run:
+
 ```bash
 pip install telethon colorama
 ```
 
-### -> Configure your credentials
+---
 
-Put ur credentials in the `info.json` in the same directory.
+### ✅ 2. Configure Your Credentials
 
-get your api and hash here [Telegram API](https://my.telegram.org/auth?to=apps)
+Create a file named `info.json` in the same directory with the following format:
 
-you can get chat IDs using Telegram bots like [@getidsbot](https://t.me/getidsbot)
-OR
-use this to get chat IDs [TeleChatIDs](https://github.com/hazyx7/TeleChatIDs)
+```json
+{
+  "api_id": YOUR_API_ID,
+  "api_hash": "YOUR_API_HASH",
+  "session_name": "forwarder_session",
+  "routing": [
+    {
+      "source_chat_ids": [-1001234567890],
+      "target_chat_ids": [-1009876543210]
+    }
+  ]
+}
+```
+
+- Get your API ID and hash here: [Telegram API](https://my.telegram.org/auth?to=apps)
+- Get group or channel chat IDs using:
+  - [@getidsbot](https://t.me/getidsbot)
+  - or this tool: [TeleChatIDs](https://github.com/hazyx7/TeleChatIDs)
 
 ---
 
 ## ▶️ How to Run
 
+Run the script from your terminal:
+
 ```bash
 python run.py
 ```
 
-- On the first run, enter your phone number (or bot token).
-- Once authenticated, the bot will start forwarding signals automatically.
+- On first run, enter your **phone number** to log in (or **bot token** if using a bot).
+- Once logged in, the script will monitor and auto-forward matching signals.
 
 ---
 
-## 📬 Signal Detection Format
+## 📬 Signal Detection Criteria
 
-Only messages containing:
+Only messages containing **all of the following** will be forwarded:
 
-- ✅ A **Buy** or **Sell** keyword
-- ✅ A **Stop Loss** (SL)
-- ✅ At least one **Take Profit** (TP)
+- ✅ A clear **Buy** or **Sell**
+- ✅ A defined **Stop Loss (SL)**
+- ✅ At least one **Take Profit (TP)**
 
-…will be forwarded.
+---
+
+## 📊 Supported Symbols
+
+The bot automatically detects and standardizes the following assets (case-insensitive):
+
+- **Gold / XAUUSD**
+- **Forex pairs:** GBPJPY, GBPUSD, EURUSD, USDJPY, AUDUSD, NZDUSD, etc.
+- **Crypto:** BTCUSD, ETHUSD, etc.
+
+> You can easily extend the list in the `SYMBOLS` dictionary inside the code.
+
+---
 
 ### ✅ Examples that WILL be forwarded:
 
 ```
-gold buy now @ 3322 - 3319
-sl : 3316
-tp1 : 3327
-tp2 : 3332
+buy gold now @ 2322 - 2319
+sl: 2316
+tp1: 2327
+tp2: 2332
 ```
 
 ```
-sell xauusd @ 3345 - 3347
-sl 3350
-tp 3335
-tp 3320
+sell GBPJPY @ 186.20 - 186.50
+stop loss 186.80
+tp1 185.90
+tp2 185.50
 ```
 
-### ❌ Examples that will be skipped:
-
 ```
-who buy gold now?
-xauusd current price: 3328
+buy btcusd @ 63000 - 63200
+sl: 62750
+tp: 63700
 ```
 
 ---
 
-## 🧑‍💻 Creator
+### ❌ Examples that will be skipped:
 
-Made by [@hazyx7](https://t.me/hazyx7)
+```
+who's buying gold?
+price alert: XAUUSD near 2325
+```
+
+```
+SL/TP not mentioned
+```
+
+---
+
+## 👨‍💻 Developer
+
+Made with ❤️ by [@hazyx7](https://t.me/hazyx7)
