@@ -37,12 +37,30 @@ logging.basicConfig(
 client = TelegramClient(session_name, api_id, api_hash)
 
 # === Signal Extractor ===
+
+# Supported symbols — extend as needed
+SYMBOLS = {
+    "gold": "XAUUSD",
+    "xauusd": "XAUUSD",
+    "gbpjpy": "GBPJPY",
+    "gbpusd": "GBPUSD",
+    "eurusd": "EURUSD",
+    "usdjpy": "USDJPY",
+    "audusd": "AUDUSD",
+    "nzdusd": "NZDUSD",
+    "btcusd": "BTCUSD",
+    "ethusd": "ETHUSD",
+    "btc": "BTCUSD",
+    "eth": "ETHUSD"
+}
+
 def extract_valid_signal(text):
     lines = text.splitlines()
     cleaned = []
     tp_count = 1
-    found_buy_sell = False
+    found_entry = False
     found_tp = False
+    symbol_found = None
 
     for line in lines:
         line = line.strip()
@@ -50,14 +68,22 @@ def extract_valid_signal(text):
         if not line or "money management" in line.lower():
             continue
 
-        # Buy/Sell detection
-        if re.search(r'\b(buy|sell)\b.*?(gold|xauusd)?', line, re.IGNORECASE):
-            line = re.sub(r'gold', 'XAUUSD', line, flags=re.IGNORECASE)
-            cleaned.append(line)
-            cleaned.append("")  # Blank line
-            found_buy_sell = True
+        # Detect symbol and BUY/SELL
+        for keyword in SYMBOLS:
+            if re.search(rf'\b(buy|sell)\b.*?\b{keyword}\b', line, re.IGNORECASE):
+                symbol_found = SYMBOLS[keyword]
+                direction_match = re.search(r'\b(buy|sell)\b', line, re.IGNORECASE)
+                direction = direction_match.group(1).upper() if direction_match else None
 
-        elif re.search(r'\d+\s*@\s*\d+(\.\d+)?\s*-\s*\d+(\.\d+)?', line):
+                if symbol_found and direction:
+                    cleaned.append(f"{symbol_found}")
+                    cleaned.append(f"{direction} Signal")
+                    cleaned.append("")
+                    found_entry = True
+                    break
+
+        # Zone
+        elif re.search(r'\d+\s*@\s*\d+(\.\d+)?\s*[-–]\s*\d+(\.\d+)?', line):
             cleaned.append(line)
 
         # Stop Loss
@@ -65,7 +91,7 @@ def extract_valid_signal(text):
             sl_match = re.search(r'(\d+(\.\d+)?)', line)
             if sl_match:
                 cleaned.append(f"Stop Loss: {sl_match.group(1)}")
-                cleaned.append("")  # Blank line
+                cleaned.append("")
 
         # Take Profits
         elif 'tp' in line.lower():
@@ -75,7 +101,7 @@ def extract_valid_signal(text):
                 tp_count += 1
                 found_tp = True
 
-    if found_buy_sell and found_tp:
+    if found_entry and found_tp:
         return '\n'.join(cleaned)
     return None
 
